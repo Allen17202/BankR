@@ -42,7 +42,20 @@
         <h1 class="h3 font-weight-normal text-white bg-dark" >Accounts</h1>
       </div>
       <div class="text-left">
-        <h1 class="h3 mb-3 font-weight-normal text-black bg-light p-3" >Checkings: <br/> <br/> Savings: <br/><br/></h1>
+        <h1 class="h3 mb-3 font-weight-normal text-black bg-light p-3">
+          Checkings:
+          <br/>
+          {% if user.is_authenticated %}
+            ${{ user.accounts.CheckingBalance }}
+          {% endif %}
+          <br/>
+          <br/>
+          Savings:
+          <br/>
+          {% if user.is_authenticated %}
+            ${{ user.accounts.SavingBalance }}
+          {% endif %}
+        </h1>
       </div>
       <br/>
       <div class="col-lg-13 text-center">
