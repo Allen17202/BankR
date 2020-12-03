@@ -38,18 +38,18 @@
                 <th>Name</th>
                 <th>Amount</th>
                 <th>Date</th>
-                <th>Balance</th>
+                <th> Current Balance</th>
               </tr>
             </thead>
             <tbody>
               {% for record in records.all %}
-              <tr>
-                <td> {{record.transationID}} </td>
-                <td> {{record.senderName}} </td>
-                <td> {{record.amount}} </td>
-                <td> {{record.date}} </td>
-                <td> {{record.balance}} </td>
-              </tr>
+                <tr>
+                  <td> {{record.transationID}} </td>
+                  <td> {{record.senderName}} </td>
+                  <td> {{record.amount}} </td>
+                  <td> {{record.date}} </td>
+                  <td> {{record.balance}} </td>
+                </tr>
               {% endfor %}
             </tbody>
           </table>

@@ -46,8 +46,13 @@ def transfer(request):
 
             item = records(transationID = receiveuser.accountNumber, senderName = receiveuser.user.first_name, amount = int(tranferAmt),balance = curruser.accounts.CheckingBalance)
             item.save()
+            curruser.accounts.recordsUser.add(item)
+            curruser.accounts.save()
+
             item2 = records(transationID = curruser.accounts.accountNumber, senderName = curruser.accounts.user.first_name, amount = int(tranferAmt),balance = receiveuser.CheckingBalance)
             item2.save()
+            receiveuser.recordsUser.add(item2)
+            receiveuser.accounts.save()
             return redirect("../")
         elif 'savings' in request.POST:
             try:
@@ -61,12 +66,23 @@ def transfer(request):
             if int(tranferAmt) > curruser.accounts.SavingBalance:
                 return render(request, 'accounts/transfer.html', {'error':'Insufficient Funds'})
 
-            curruser.accounts.SaveingBalance = curruser.accounts.SaveingBalance - int(tranferAmt)
-            receiveuser.SaveingBalance = receiveuser.SavingBalance + int(tranferAmt)
+            curruser.accounts.SavingBalance = curruser.accounts.SavingBalance - int(tranferAmt)
+            receiveuser.SavingBalance = receiveuser.SavingBalance + int(tranferAmt)
             curruser.accounts.save()
             receiveuser.save()
+
+            item = records(transationID = receiveuser.accountNumber, senderName = receiveuser.user.first_name, amount = int(tranferAmt),balance = curruser.accounts.CheckingBalance)
+            item.save()
+            curruser.accounts.recordsUser.add(item)
+            curruser.accounts.save()
+
+            item2 = records(transationID = curruser.accounts.accountNumber, senderName = curruser.accounts.user.first_name, amount = int(tranferAmt),balance = receiveuser.CheckingBalance)
+            item2.save()
+            receiveuser.recordsUser.add(item2)
+            receiveuser.accounts.save()
+
             return redirect("../")
     return render(request, 'accounts/transfer.html')
 def record(request):
-    record = records.objects
+    record = request.user.accounts.recordsUser.all()
     return render(request, 'accounts/transaction.html', {'records':record})
