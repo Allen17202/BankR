@@ -3,7 +3,7 @@ dKing
 Kingsy123
 Account Number: 7437957
 Checking Balance: 1000
-Saving Balance: 250
+Saving Balance: 240
 
 Claudette Morel
 moneyMorel
@@ -16,7 +16,7 @@ Jake Park
 lonelyBro
 scaredycat234
 Account Number: 8765432
-Checking Balance: 0
+Checking Balance: 10
 Saving Balance: 12
 
 Feng Min

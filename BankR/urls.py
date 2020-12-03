@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', accounts.views.login, name='login'),
     path('accounts/', include('accounts.urls')),
-    path('transferfunds/', include('transferfunds.urls')),
-    path('transactionrecord/', include('transactionrecord.urls')),    
+    path('transfer/', accounts.views.transfer),
+    path('record/', accounts.views.record),
 ]

@@ -10,3 +10,10 @@ class accounts(models.Model):
 
     def __str__(self):
         return self.user.first_name
+
+class records(models.Model):
+    transationID = models.IntegerField()
+    senderName = models.CharField(max_length = 30)
+    amount = models.IntegerField()
+    date = models.DateTimeField(auto_now=True)
+    balance = models.IntegerField()
