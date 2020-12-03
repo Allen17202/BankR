@@ -52,7 +52,7 @@ def transfer(request):
             item2 = records(transationID = curruser.accounts.accountNumber, senderName = curruser.accounts.user.first_name, amount = int(tranferAmt),balance = receiveuser.CheckingBalance)
             item2.save()
             receiveuser.recordsUser.add(item2)
-            receiveuser.accounts.save()
+            receiveuser.save()
             return redirect("../")
         elif 'savings' in request.POST:
             try:
@@ -71,15 +71,15 @@ def transfer(request):
             curruser.accounts.save()
             receiveuser.save()
 
-            item = records(transationID = receiveuser.accountNumber, senderName = receiveuser.user.first_name, amount = int(tranferAmt),balance = curruser.accounts.CheckingBalance)
+            item = records(transationID = receiveuser.accountNumber, senderName = receiveuser.user.first_name, amount = int(tranferAmt),balance = curruser.accounts.SavingBalance)
             item.save()
             curruser.accounts.recordsUser.add(item)
             curruser.accounts.save()
 
-            item2 = records(transationID = curruser.accounts.accountNumber, senderName = curruser.accounts.user.first_name, amount = int(tranferAmt),balance = receiveuser.CheckingBalance)
+            item2 = records(transationID = curruser.accounts.accountNumber, senderName = curruser.accounts.user.first_name, amount = int(tranferAmt),balance = receiveuser.SavingBalance)
             item2.save()
             receiveuser.recordsUser.add(item2)
-            receiveuser.accounts.save()
+            receiveuser.save()
 
             return redirect("../")
     return render(request, 'accounts/transfer.html')
